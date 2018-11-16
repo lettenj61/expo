@@ -1,0 +1,30 @@
+{{ define "main" }}
+{{- $dateFormat := default "Jan 2, 2006" (index .Site.Params "date_format") -}}
+{{- $truncate := default true .Site.Params.truncate -}}
+{{- $blogType := default "post" .Site.Params.blog_type -}}
+{{- $pg := .Paginate (where .Pages "Type" $blogType) -}}
+<section class="section">
+  <div class="container">
+    {{ range $pg.Pages }}
+    {{- $author := .Params.author | default .Site.Params.author -}}
+    <article class="media">
+      <div class="media-content">
+        <div class="content">
+          <p class="title is-3">
+            <a href="{{.RelPermalink}}">{{ .Title | markdownify }}</a>
+          </p>
+          <div class="subtitle is-6">
+          {{- if not .Date.IsZero -}}{{ .Date.Format $dateFormat }}{{- end -}}
+          {{ if $author }}
+          {{ i18n "by" }} <span rel="author">{{ $author }}</span>
+          {{ end }}
+          </div>
+          {{- .Render "summary" -}}
+        </div>
+      </div>
+    </article>
+    {{ end }}
+  </div>
+</section>
+{{ partial "paginator" . }}
+{{ end }}

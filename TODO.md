@@ -7,4 +7,5 @@
     + documentation
     + blog
 - `bulmaswatch` support
+    + deal with default CDN links
 - i18n

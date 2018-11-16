@@ -25,3 +25,9 @@
 
 - id: language
   translation: "Language"
+
+- id: prev
+  translation: "Previous"
+
+- id: next
+  translation: "Next"

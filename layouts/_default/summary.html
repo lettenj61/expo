@@ -1,0 +1,8 @@
+<article>
+  {{ .Summary }}
+  {{- if .Truncated -}}
+  <p>
+    <a href="{{.RelPermalink}}">{{ i18n "more" }}</a>
+  </p>
+  {{- end -}}
+</article>

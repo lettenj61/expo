@@ -3,11 +3,15 @@ title = "Hugo Themes"
 author = "Steve Francia"
 copyright = "Copyright © 2008–2018, Steve Francia and the Hugo Authors; all rights reserved."
 canonifyurls = true
-paginate = 3
+paginate = 2
 
 # customized for expo
+
+defaultContentLanguage = "en"
 
 pygmentsOptions = "linenos=1"
 pygmentsCodefences = true
 pygmentsUseClasses = true
 
+[params]
+  date_format = "2006/01/02"
