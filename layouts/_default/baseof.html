@@ -14,7 +14,7 @@
   {{ partial "head-custom" . }}
 </head>
 
-<body>
+<body class="has-navbar-fixed-top">
   {{- partial "header.html" . -}}
   <div id="content">
     {{- block "main" . }}{{- end }}
