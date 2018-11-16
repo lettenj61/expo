@@ -5,3 +5,9 @@ copyright = "Copyright © 2008–2018, Steve Francia and the Hugo Authors; all r
 canonifyurls = true
 paginate = 3
 
+# customized for expo
+
+pygmentsOptions = "linenos=1"
+pygmentsCodefences = true
+pygmentsUseClasses = true
+

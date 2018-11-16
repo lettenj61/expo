@@ -3,11 +3,14 @@
 
 <head>
   {{ partial "head-meta" . }}
+  {{ .Hugo.Generator }}
   <title>
-    {{ block "title" . }}
+    {{- block "title" . -}}
       {{ .Title }}{{ if ne .Title .Site.Title }} | {{ .Site.Title }}{{ end }}
-    {{ end }}
+    {{- end -}}
   </title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulmaswatch/0.7.2/flatly/bulmaswatch.min.css" integrity="sha256-WSV/AhhnY7hEn4OFZQmcnWNMukaNH5WHlFayl/FgOcE=" crossorigin="anonymous" />
   {{ partial "head-custom" . }}
 </head>
 

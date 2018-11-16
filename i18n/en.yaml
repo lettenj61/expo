@@ -1,0 +1,27 @@
+# Mostly copied from https://github.com/Xzya/hugo-bootstrap
+- id: by
+  translation: "by"
+
+- id: tags
+  translation: "Tags"
+
+- id: categories
+  translation: "Categories"
+
+- id: more
+  translation: "Read More →"
+
+- id: translations
+  translation: "Translations"
+
+- id: related
+  translation: "See also"
+
+- id: recent
+  translation: "Recent Posts"
+
+- id: top
+  translation: "Back to top"
+
+- id: language
+  translation: "Language"
