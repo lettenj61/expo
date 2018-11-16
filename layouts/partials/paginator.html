@@ -1,25 +1,45 @@
 <section class="section">
   <div class="container">
-    {{- $pg := $.Paginator -}}
-    {{- $scr := $.Scratch -}}
+    {{- $pg := .Paginator -}}
+    {{- $scr := .Scratch -}}
+    {{- $curr := $pg.PageNumber -}}
     {{ if gt $pg.TotalPages 1 }}
     <nav class="pagination is-centered">
       <a href="{{with $pg.Prev}}{{.URL}}{{end}}" class="pagination-previous" {{if not $pg.HasPrev}}disabled{{end}}>{{ i18n "prev" }}</a>
       <a href="{{with $pg.Next}}{{.URL}}{{end}}" class="pagination-next" {{if not $pg.HasNext}}disabled{{end}}>{{ i18n "next" }}</a>
       <ul class="pagination-list">
-        {{- $scr.Set "paginator.show" "number" -}}
-        {{ range $pg.Pagers }}
-        {{- $paginatorShow := $scr.Get "paginator.show" -}}
-        {{- if eq "number" $paginatorShow -}}
+        {{- with $pg.First -}}
         <li>
-          <a href="{{.URL}}" class="pagination-link {{if eq . $pg}}is-current{{end}}">{{ .PageNumber }}</a>
-        </li>
-        {{- else if eq "ellipsis" $paginatorShow -}}
-        <li>
-          <span class="pagination-ellipsis">&hellip;</span>
+          <a href="{{.URL}}" class="pagination-link{{if eq $curr 1}} is-current{{end}}">1</a>
         </li>
         {{- end -}}
+        {{- $scr.Set "paginator.ellipsed" false -}}
+        {{ range $pg.Pagers }}
+        {{- $right := sub .TotalPages .PageNumber -}}
+        {{- $showPageNum := or (le .PageNumber 9) (eq $right 0) -}}
+        {{- $showPageNum := or $showPageNum (and (gt .PageNumber (sub $curr 4)) (lt .PageNumber (add $curr 4))) }}
+        {{- if $showPageNum -}}
+          {{- $scr.Set "paginator.ellipsed" false -}}
+          {{- $scr.Set "paginator.shouldEllipse" false -}}
+        {{- else -}}
+          {{- $scr.Set "paginator.shouldEllipse" (not ($scr.Get "paginator.ellipsed")) -}}
+          {{- $scr.Set "paginator.ellipsed" true -}}
+        {{- end -}}
+        {{- if and $showPageNum (not (eq .PageNumber 1)) (not (eq .PageNumber .TotalPages)) -}}
+        <li>
+          <a href="{{.URL}}" class="pagination-link{{if eq . $pg}} is-current{{end}}">{{ .PageNumber }}</a>
+        </li>
+        {{- else if $scr.Get "paginator.shouldEllipse" -}}
+        <li>
+          <span class="paginator-ellipsis">&hellip;</span>
+        </li>
+        {{- end -}}{{/* if */}}
         {{- end -}}{{/* range */}}
+        {{- with $pg.Last -}}
+        <li>
+          <a href="{{.URL}}" class="pagination-link{{if eq $curr $pg.TotalPages}} is-current{{end}}">{{ $pg.TotalPages }}</a>
+        </li>
+        {{- end -}}
       </ul>
     </nav>
     {{ end }}
