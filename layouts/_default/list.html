@@ -1,0 +1,22 @@
+{{ define "main" }}
+{{- $pg := .Paginator 8 -}}
+<section class="section">
+  <div class="container">
+    {{ range $pg.Pages }}
+    <article class="media">
+      <div class="media-content">
+        <div class="content">
+          <p class="title is-4">
+            <a href="{{.RelPermalink}}">{{ .Title | markdownify }}</a>
+            {{- with .Pages -}}
+            <span class="tag">{{ len . }}</span>
+            {{- end -}}
+          </p>
+        </div>
+      </div>
+    </article>
+    {{ end }}
+  </div>
+</section>
+{{ partial "paginator" . }}
+{{ end }}
