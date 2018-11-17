@@ -15,3 +15,7 @@ pygmentsUseClasses = true
 
 [params]
   date_format = "2006/01/02"
+
+[params.landingpage]
+  style = "is-primary is-bold"
+  subtitle = "How to work with Hugo"
