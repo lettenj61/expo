@@ -2,11 +2,9 @@
 <section class="section">
   <div class="container is-fluid">
     <div class="columns">
-      {{- if ne false .Params.sidebar -}}
       <div class="column is-3">
         {{ partial "menu" . }}
       </div>
-      {{- end -}}
       <div class="column">
         <div class="content">
           {{ .Content }}

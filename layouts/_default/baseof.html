@@ -9,17 +9,37 @@
       {{ .Title }}{{ if ne .Title .Site.Title }} | {{ .Site.Title }}{{ end }}
     {{- end -}}
   </title>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulmaswatch/0.7.2/default/bulmaswatch.min.css" integrity="sha256-Ck/LLH3sTe1l4+zueQcvPbLtKXMthMVSYm7cXMhuuFA=" crossorigin="anonymous" />
+  {{/* asset loading */}}
+  {{- $useCDN := default true .Site.Params.cdn -}}
+  {{- if $useCDN -}}
+  {{- $assets := $.Site.Data.expo.assets -}}
+  {{ with $assets.fontawesome5 }}
+  <link rel="stylesheet" href="{{.url}}" integrity="{{.integrity}}" crossorigin="anonymous" />
+  {{ end }}
+  {{ if .Site.Params.bulmaswatch }}
+  {{ $swatch := index $assets.bulmaswatch .Site.Params.bulmaswatch }}
+  {{ with $swatch}}
+  <link rel="stylesheet" href="{{.url}}" integrity="{{.integrity}}" crossorigin="anonymous" />
+  {{ end }}{{/* with $swatch */}}
+  {{ else }}
+  {{ with $assets.bulma }}
+  <link rel="stylesheet" href="{{.url}}" integrity="{{.integrity}}" crossorigin="anonymous" />
+  {{- end -}}
+  {{- end -}}{{/* if $swatch */}}
+  {{- end -}}{{/* if $useCDN */}}
   {{ partial "head-custom.html" . }}
 </head>
 
 <body class="has-navbar-fixed-top">
-  {{- partial "header.html" . -}}
+  {{ partial "header.html" . }}
   <div id="content">
-    {{- block "main" . }}{{- end }}
+    {{ block "main" . }}{{ end }}
   </div>
-  {{- partial "footer.html" . -}}
+  {{ partial "footer.html" . }}
+  <script>
+    console.log("__Dot__", JSON.parse("{{ jsonify . }}"))
+    console.log("Site.Menus.main", JSON.parse("{{ jsonify .Site.Menus.main }}"))
+  </script>
 </body>
 
 </html>

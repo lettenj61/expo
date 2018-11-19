@@ -9,13 +9,19 @@ paginate = 3
 
 defaultContentLanguage = "en"
 
+sectionPagesMenu = "main"
+
 pygmentsOptions = "linenos=1"
 pygmentsCodefences = true
 pygmentsUseClasses = true
 
 [params]
   date_format = "2006/01/02"
+  #bulmaswatch = "sandstone"
+
+[params.navbar]
+  style = "is-dark"
 
 [params.landingpage]
-  style = "is-primary is-bold"
+  style = "is-primary"
   subtitle = "How to work with Hugo"

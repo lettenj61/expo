@@ -1,25 +1,17 @@
 {{- $style := .Site.Params.navbar.style -}}
+{{- $blogType := default "post" .Site.Params.blog_type -}}
 <nav class="navbar is-fixed-top{{with $style}} {{.}}{{end}}" role="navigation" aria-label="main navigation">
   {{ partial "brand" . }}
   <div id="navbar-menu" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item">
-        Home
-      </a>
+      {{ range where .Site.Sections "Type" "<>" $blogType }}
+      <a {{with .URL}}href="{{.}}"{{end}} class="navbar-item">{{ .Name }}</a>
+      {{ end }}
 
-      <a class="navbar-item">
-        Documentation
-      </a>
-
-      {{- range .Site.Menus.main -}}
-      <!-- <a href="{{.URL}}" class="navbar-item">{{ .Title }}</a> -->
-      {{- end -}}
-
-      <div class="navbar-item has-dropdown is-hoverable">
+      <!-- <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
           More
         </a>
-
         <div class="navbar-dropdown">
           <a class="navbar-item">
             About
@@ -35,7 +27,7 @@
             Report an issue
           </a>
         </div>
-      </div>
+      </div> -->
     </div>
 
     <div class="navbar-end">

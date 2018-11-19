@@ -1,0 +1,16 @@
+{{- $blogType := default "post" .Site.Params.blog_type -}}
+{{- $ctx := . -}}
+<aside class="menu">
+  <ul class="menu-list">
+  {{ range where .Site.Sections "Type" "<>" $blogType }}
+  <li>
+    <a href="{{.RelPermalink}}">{{ .Title }}</a>
+    {{- if .Sections -}}
+      {{- partial "menu-inner" (dict "pages" .Sections) -}}
+    {{- else if .Pages -}}
+      {{- partial "menu-inner" (dict "pages" .Pages) -}}
+    {{- end -}}
+  </li>
+  {{ end }}
+  </ul>
+</aside>

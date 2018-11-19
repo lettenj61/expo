@@ -1,0 +1,11 @@
+{{- $pages := index . "pages" -}}
+<ul class="menu-list">
+  {{ range $pages }}
+  <li>
+    <a href="{{.RelPermalink}}" data-url="{{.URL}}">{{ .Title }}</a>
+    {{ if .Pages }}
+      {{ partial "menu-inner" (dict "pages" .Pages) }}
+    {{ end }}
+  </li>
+  {{ end }}
+</ul>
