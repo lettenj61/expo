@@ -15,6 +15,8 @@ EXPO provides a few ways to configure how it render your site. To save your time
 [**Layout**](layout)
 : You can override `brand logo`, `menus`(in navbar and/or sidebar), contents in `landing page`, loaded `assets` via hugo's [template lookup order][hugo-template] feature.
 
+{{< source "config.toml" toml 17 >}}
+
 
 [hugo-configuration]: https://gohugo.io/getting-started/configuration/
 [hugo-template]: https://gohugo.io/templates/lookup-order/

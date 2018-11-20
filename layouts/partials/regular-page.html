@@ -1,0 +1,24 @@
+<section class="section">
+  <div class="container is-fluid">
+    <div class="columns">
+      {{- if ne false .Params.sidebar -}}
+      <div class="column is-3">
+        {{ partial "menu.html" . }}
+      </div>
+      {{- end -}}
+      <div class="column">
+        {{ if ne false .Params.breadcrumb }}
+          {{ partial "breadcrumb.html" . }}
+        {{ end }}
+        <div class="content" data-wordcount="{{.WordCount}}">
+          {{ .Content }}
+        </div>
+      </div>
+      {{ if or (eq .Params.toc true) (and (gt .WordCount 400) (ne .Params.toc false)) }}
+      <div class="column is-narrow">
+        {{ .TableOfContents }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>

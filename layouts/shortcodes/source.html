@@ -1,0 +1,22 @@
+{{- if (not .IsNamedParams) -}}
+{{- $path := .Get 0 -}}
+{{- if not (fileExists $path) -}}
+  {{- errorf "could not locate source file [%s] at: " $path .Position -}}
+{{- else -}}
+{{- $lang := .Get 1 -}}
+{{- $start := .Get 2 -}}
+{{- $lines := split (readFile $path) "\n" -}}
+{{- if gt $start 1 -}}
+{{- $lines = after $start $lines -}}
+{{- end -}}
+{{ if $lang }}
+{{ highlight (delimit $lines "\n") $lang "" }}
+{{ else }}
+<pre>
+{{ delimit $lines "\n" }}
+</pre>
+{{ end }}{{/* if $lang */}}
+{{- end -}}{{/* if not fileExists */}}
+{{- else -}}
+  {{- errorf "'source' shortcode must be invoked with positional parameters. at: %s" .Position -}}
+{{- end -}}
