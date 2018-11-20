@@ -1,10 +1,12 @@
+{{- $ctx := index . "context" -}}
 {{- $pages := index . "pages" -}}
 <ul class="menu-list">
   {{ range $pages }}
   <li>
-    <a href="{{.RelPermalink}}" data-url="{{.URL}}">{{ .Title }}</a>
-    {{ if .Pages }}
-      {{ partial "menu-inner" (dict "pages" .Pages) }}
+    {{- $isActive := eq $ctx.URL .URL -}}
+    <a href="{{.RelPermalink}}"{{if $isActive}} class="is-active"{{end}} data-url="{{.URL}}">{{ .Title }}</a>
+    {{ if and .Pages (eq $ctx.Section .Section) }}
+      {{ partial "menu-inner" (dict "context" $ctx "pages" .Pages) }}
     {{ end }}
   </li>
   {{ end }}

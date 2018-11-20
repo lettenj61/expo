@@ -4,7 +4,10 @@
   {{ partial "brand" . }}
   <div id="navbar-menu" class="navbar-menu">
     <div class="navbar-start">
-      {{ range where .Site.Sections "Type" "<>" $blogType }}
+      {{ range where .Site.Sections "Type" "ne" $blogType }}
+      <a {{with .URL}}href="{{.}}"{{end}} class="navbar-item">{{ .Name }}</a>
+      {{ end }}
+      {{ range where .Site.Sections "Type" "eq" $blogType }}
       <a {{with .URL}}href="{{.}}"{{end}} class="navbar-item">{{ .Name }}</a>
       {{ end }}
 

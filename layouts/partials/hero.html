@@ -17,11 +17,16 @@
             {{ . }}
           </h2>
           {{- end -}}
+          {{ if .Site.Params.landingpage.start }}
+          {{- $startPage := .Site.GetPage .Site.Params.landingpage.start -}}
+          {{ with $startPage }}
           <div class="field is-grouped is-grouped-centered">
             <p class="control">
-              <a class="button is-primary is-inverted is-large">Get Started</a>
+              <a href="{{.RelPermalink}}" class="button is-primary is-inverted is-large">{{ i18n "start" }}</a>
             </p>
           </div>
+          {{ end }}{{/* with */}}
+          {{ end }}
         </div>
       </div>
     </div>

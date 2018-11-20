@@ -31,3 +31,6 @@
 
 - id: next
   translation: "Next"
+
+- id: start
+  translation: "Get Started"

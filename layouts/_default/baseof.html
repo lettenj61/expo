@@ -36,10 +36,6 @@
     {{ block "main" . }}{{ end }}
   </div>
   {{ partial "footer.html" . }}
-  <script>
-    console.log("__Dot__", JSON.parse("{{ jsonify . }}"))
-    console.log("Site.Menus.main", JSON.parse("{{ jsonify .Site.Menus.main }}"))
-  </script>
 </body>
 
 </html>

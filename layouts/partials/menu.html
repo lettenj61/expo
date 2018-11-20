@@ -1,14 +1,15 @@
 {{- $blogType := default "post" .Site.Params.blog_type -}}
 {{- $ctx := . -}}
-<aside class="menu">
+<aside class="menu" id="doc-sidebar">
   <ul class="menu-list">
-  {{ range where .Site.Sections "Type" "<>" $blogType }}
+  {{ range where .Site.Sections "Type" "eq" .Section }}
   <li>
-    <a href="{{.RelPermalink}}">{{ .Title }}</a>
+    {{- $isActive := eq $ctx.URL .URL -}}
+    <a href="{{.RelPermalink}}"{{if $isActive}} class="is-active"{{end}}>{{ .Title }}</a>
     {{- if .Sections -}}
-      {{- partial "menu-inner" (dict "pages" .Sections) -}}
+      {{- partial "menu-inner" (dict "context" $ctx "pages" .Sections) -}}
     {{- else if .Pages -}}
-      {{- partial "menu-inner" (dict "pages" .Pages) -}}
+      {{- partial "menu-inner" (dict "context" $ctx "pages" .Pages) -}}
     {{- end -}}
   </li>
   {{ end }}

@@ -15,6 +15,12 @@
     + can be overridden with params
 - i18n
 
+## Example site
+
+1.  installation
+2.  site level configuration
+3.  overriding layouts / asset loading
+
 ## Layouts
 
 The `_default` layout is designed for gitbook-like documentation. In Expo all sections would be treated as docs by default, but we special case content with type `post` so that contents under `post` section is rendered as blog entry. You can override the section for `post` layout by setting `blog_type = "myblogtype"` in site configuration.

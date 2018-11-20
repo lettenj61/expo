@@ -17,11 +17,12 @@ pygmentsUseClasses = true
 
 [params]
   date_format = "2006/01/02"
-  #bulmaswatch = "sandstone"
+  bulmaswatch = "cosmo"
 
 [params.navbar]
   style = "is-dark"
 
 [params.landingpage]
+  start = "/guide"
   style = "is-primary"
   subtitle = "How to work with Hugo"
