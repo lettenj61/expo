@@ -1,0 +1,20 @@
+{{- $scr := .Scratch -}}
+{{- if .IsNamedParams -}}
+  {{- $scr.Set "class" (.Get "class") -}}
+  {{- $scr.Set "title" (.Get "title") -}}
+{{- else -}}
+  {{- $scr.Set "class" (.Get 1) -}}
+  {{- $scr.Set "title" (.Get 0) -}}
+{{- end -}}
+{{- $class := $scr.Get "class" -}}
+{{- $title := $scr.Get "title" -}}
+<article class="message{{with $class}} {{.}}{{end}}">
+  {{ with $title }}
+  <div class="message-header">
+    <p>{{ . }}</p>
+  </div>
+  {{ end }}
+  <div class="message-body">
+    {{ .Inner | markdownify }}
+  </div>
+</article>

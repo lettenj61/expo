@@ -2,6 +2,6 @@
 
 setlocal EnableDelayedExpansion
 
-hugo server -D --themesDir ../../ -t hugo-expo --disableFastRender
+hugo server -D --themesDir ../../ -t hugo-expo --disableFastRender %*
 
 exit /b %ERRORLEVEL%

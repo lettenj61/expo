@@ -4,7 +4,7 @@
   {{ range $pages }}
   <li>
     {{- $isActive := eq $ctx.URL .URL -}}
-    <a href="{{.RelPermalink}}"{{if $isActive}} class="is-active"{{end}} data-url="{{.URL}}">{{ .Title }}</a>
+    <a href="{{.RelPermalink}}"{{if $isActive}} class="is-active"{{end}} data-url="{{.URL}}" data-section="{{.Section}},{{$ctx.Section}}">{{ .Title }}</a>
     {{ if and .Pages (eq $ctx.Section .Section) }}
       {{ partial "menu-inner" (dict "context" $ctx "pages" .Pages) }}
     {{ end }}

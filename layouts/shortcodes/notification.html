@@ -1,0 +1,7 @@
+<div class="notification{{with .Get 0}} {{.}}{{end}}">
+  {{ if eq false (.Get 1) }}
+  {{ chomp .Inner }}
+  {{ else }}
+  {{ chomp .Inner | markdownify }}
+  {{ end }}
+</div>

@@ -36,6 +36,28 @@
     {{ block "main" . }}{{ end }}
   </div>
   {{ partial "footer.html" . }}
+  {{ if ne false .Site.Params.navbar }}
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var burgers = document.querySelectorAll(".navbar-burger");
+    if (burgers.length > 0) {
+      burgers = [].slice.call(burgers, 0);
+      burgers.forEach(function(el) {
+        el.addEventListener("click", function() {
+          var id = el.dataset.target;
+          if (id) {
+            var target = document.getElementById(id);
+            if (target) {
+              el.classList.toggle("is-active");
+              target.classList.toggle("is-active");
+            }
+          }
+        });
+      });
+    }
+  });
+  </script>
+  {{ end }}
 </body>
 
 </html>

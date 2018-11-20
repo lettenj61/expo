@@ -1,15 +1,30 @@
 +++
-title = "Getting started"
+title = "Getting Started"
+weight = 2
 +++
 
-# Getting started
+# Get started with EXPO
 
-TODO
+Here we show you how to start working with the theme.
 
-<article class="message is-warning">
-  <div class="message-header">
-    <p>Warning</p>
-  </div>
-  <div class="message-body">
-  </div>
-</article>
+## Installation
+
+### Set up `hugo`
+
+Since EXPO is a hugo theme, you have to set up [hugo][hugo] first.
+
+If you haven't set up hugo yet, follow its official instruction [here][hugo-install].
+
+### Make `EXPO` your theme
+
+After you setup fresh site, let's grab `EXPO` theme. You can do this in either way:
+
+1.  Download assets from [repository][repo].
+
+2.  Add the theme to your site's `git` repository as `submodule`.
+
+That's all! Now you're ready to write documents using EXPO.
+
+[repo]: https://github.com/lettenj61/hugo-expo
+[hugo]: https://gohugo.io
+[hugo-install]: https://gohugo.io/getting-started/installing/

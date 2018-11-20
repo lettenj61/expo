@@ -15,14 +15,20 @@ pygmentsOptions = "linenos=1"
 pygmentsCodefences = true
 pygmentsUseClasses = true
 
+[blackfriday]
+  hrefTargetBlank = true
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
 [params]
   date_format = "2006/01/02"
-  bulmaswatch = "cosmo"
+  #bulmaswatch = "cosmo"
 
 [params.navbar]
   style = "is-dark"
 
 [params.landingpage]
   start = "/guide"
-  style = "is-primary"
+  #style = "is-primary"
   subtitle = "How to work with Hugo"

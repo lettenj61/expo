@@ -6,7 +6,11 @@
   <li>
     {{- $isActive := eq $ctx.URL .URL -}}
     <a href="{{.RelPermalink}}"{{if $isActive}} class="is-active"{{end}}>{{ .Title }}</a>
-    {{- if .Sections -}}
+    {{- if and .Sections .Pages -}}
+      {{- $pages := .Sections -}}
+      {{- $pages = $pages | append .Pages -}}
+      {{- partial "menu-inner" (dict "context" $ctx "pages" $pages.ByWeight) -}}
+    {{- else if .Sections -}}
       {{- partial "menu-inner" (dict "context" $ctx "pages" .Sections) -}}
     {{- else if .Pages -}}
       {{- partial "menu-inner" (dict "context" $ctx "pages" .Pages) -}}
